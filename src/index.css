@@ -2638,7 +2638,7 @@ body.dark-mode .scroll-top {
     position: relative;
     z-index: 1;
     padding: 20px 0;
-    animation: scrollRightToLeft 90s linear infinite;
+    animation: scrollRightToLeft 40s linear infinite;
 }
 
 /* Industry Card Styles */
@@ -2789,7 +2789,7 @@ body.dark-mode .scroll-top {
     .industries-grid {
         gap: 12px;
         padding: 0 16px 20px;
-        animation-duration: 100s;
+        animation-duration: 50s;
     }
 
     .industry-card {
@@ -2810,7 +2810,7 @@ body.dark-mode .scroll-top {
     .industries-grid {
         gap: 12px;
         padding: 0 16px 20px;
-        animation-duration: 10s;
+        animation-duration: 60s;
     }
 
     .industry-card {
