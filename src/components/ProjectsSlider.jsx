@@ -2,19 +2,19 @@ import React, { useEffect, useRef } from 'react';
 
 const projects = [
     {
-        name: "Sixpine Furniture Store",
-        category: "Ecommerce",
-        description: "Transforming furniture retail with custom ecommerce solutions",
+        name: "Aadyaa Infotech Corporate Website",
+        category: "Business Website",
+        description: "Professional digital presence for a leading IT services company",
         image: "/1.png",
         features: [
-            { icon: "fa-shopping-cart", text: "Smart Cart" },
-            { icon: "fa-credit-card", text: "Secure Payment" }
+            { icon: "fa-laptop-code", text: "Modern Design" },
+            { icon: "fa-mobile-alt", text: "Responsive Layout" }
         ]
     },
     {
-        name: "Business Mobile App",
-        category: "Technology",
-        description: "Connecting businesses to customers seamlessly",
+        name: "Aadyaa Business Mobile App",
+        category: "Mobile Application",
+        description: "Connecting businesses to customers through innovative mobile solutions",
         image: "/2.png",
         features: [
             { icon: "fa-mobile-alt", text: "Cross-Platform" },
@@ -22,33 +22,53 @@ const projects = [
         ]
     },
     {
-        name: "Services Portal",
-        category: "Branding",
-        description: "Complete digital presence transformation",
+        name: "Aadyaa Services Portal",
+        category: "Web Portal",
+        description: "Comprehensive service showcase and client engagement platform",
         image: "/3.png",
         features: [
-            { icon: "fa-paint-brush", text: "Modern Design" },
+            { icon: "fa-paint-brush", text: "UI/UX Design" },
             { icon: "fa-chart-line", text: "SEO Optimized" }
         ]
     },
     {
-        name: "Analytics Platform",
-        category: "SaaS",
-        description: "Data-driven business intelligence dashboard",
+        name: "Ecommerce Platform Dashboard",
+        category: "Ecommerce",
+        description: "Advanced analytics and inventory management system for online retail",
         image: "/4.png",
         features: [
             { icon: "fa-chart-pie", text: "Real-time Analytics" },
-            { icon: "fa-database", text: "Big Data Support" }
+            { icon: "fa-database", text: "Inventory Management" }
         ]
     },
     {
-        name: "Practice Management",
-        category: "Healthcare",
-        description: "Streamlining patient care with digital tools",
+        name: "Healthcare Practice Management",
+        category: "Healthcare IT",
+        description: "Digital patient care and appointment scheduling solution",
         image: "/5.png",
         features: [
             { icon: "fa-heartbeat", text: "Patient Tracking" },
             { icon: "fa-calendar-check", text: "Smart Scheduling" }
+        ]
+    },
+    {
+        name: "Professional Web Development Project",
+        category: "Web Development",
+        description: "Custom web application with modern architecture and scalable design",
+        image: "/web.jpg",
+        features: [
+            { icon: "fa-code", text: "Clean Code" },
+            { icon: "fa-layer-group", text: "Modular Design" }
+        ]
+    },
+    {
+        name: "Advanced Digital Solution",
+        category: "Full Stack Development",
+        description: "End-to-end web application with cutting-edge technologies",
+        image: "/web2.jpg",
+        features: [
+            { icon: "fa-cogs", text: "Automation" },
+            { icon: "fa-shield-alt", text: "Secure & Scalable" }
         ]
     }
 ];
