@@ -1,45 +1,89 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const services = [
     {
-        title: "Website Development",
+        title: "Business Websites",
         icon: "fa-laptop-code",
-        desc: "Business, Hotel, E-commerce Websites - Custom built to match your brand",
-        features: ["Responsive Design", "Fast Loading", "Modern UI/UX"]
+        desc: "Your website is open 24/7 selling your services while you sleep. We build fast, SEO-ready sites that turn visitors into paying customers.",
+        features: [
+            "Custom UI/UX Premium Design",
+            "Mobile-First Responsiveness",
+            "Technical SEO Architecture",
+            "Lightning Fast Page Loading",
+            "SSL & Advanced Security Setup",
+            "CMS Integration for Easy Updates"
+        ]
+    },
+    {
+        title: "Ecommerce Development",
+        icon: "fa-shopping-cart",
+        desc: "Launch your online store with a checkout experience that maximises order value and reduces cart abandonment.",
+        features: [
+            "Tailored Shopping Cart Experience",
+            "Multi-Payment Gateway Integrations",
+            "Advanced Inventory Management",
+            "Real-time Order Tracking Dashboard",
+            "Abandoned Cart Recovery Funnels",
+            "High-Converting Checkout Process"
+        ]
     },
     {
         title: "Mobile App Development",
         icon: "fa-mobile-alt",
-        desc: "Android & iOS apps that engage users and drive growth",
-        features: ["Native & Hybrid Apps", "User-Friendly Interface", "Performance Optimized"]
+        desc: "Put your business in your customers' pocket. We build native iOS and Android apps or cross-platform solutions that engage users.",
+        features: [
+            "Native iOS App Development",
+            "Native Android App Development",
+            "Cross-Platform React/Flutter Apps",
+            "Interactive Push Notifications",
+            "Smooth Offline Mode Capabilities",
+            "Full App Store Publishing Support"
+        ]
     },
     {
-        title: "SEO Optimization",
-        icon: "fa-search-dollar",
-        desc: "Rank higher on Google and attract more organic traffic",
-        features: ["Keyword Research", "On-Page SEO", "Link Building"]
+        title: "CMS Platforms",
+        icon: "fa-edit",
+        desc: "Take control of your content without needing a developer. We build WordPress, Sanity, or headless CMS solutions.",
+        features: [
+            "Modern Headless CMS Architecture",
+            "Custom WordPress & Sanity Builds",
+            "Intuitive Drag-and-Drop Builders",
+            "Custom Data Types & Taxonomies",
+            "Role-Based Team Access Control",
+            "Seamless Third-Party API Sync"
+        ]
     },
     {
-        title: "Social Media Marketing",
-        icon: "fa-bullhorn",
-        desc: "Build your brand presence across all social platforms",
-        features: ["Content Creation", "Campaign Management", "Analytics & Reporting"]
+        title: "High-Converting Pages",
+        icon: "fa-rocket",
+        desc: "Every paid ad click costs you money. We design landing pages engineered for maximum conversion so your campaigns actually profit.",
+        features: [
+            "A/B Split Testing Configurations",
+            "Conversion Rate Optimization (CRO)",
+            "Strategic Call-to-Action Placements",
+            "User Heatmaps & Analytics Tracking",
+            "Frictionless Lead Generation Forms",
+            "Persuasive Sales Copywriting structure"
+        ]
     },
     {
-        title: "Graphic Design",
-        icon: "fa-palette",
-        desc: "Stunning visuals for branding, posters, ads and more",
-        features: ["Logo & Branding", "Marketing Materials", "Creative Designs"]
-    },
-    {
-        title: "Digital Marketing",
-        icon: "fa-chart-line",
-        desc: "Comprehensive online marketing strategies for brand growth",
-        features: ["Strategy Planning", "Campaign Execution", "ROI Tracking"]
+        title: "Custom Web Applications",
+        icon: "fa-cogs",
+        desc: "Replace manual processes with smart web applications that automate workflows, manage data, and create scalable efficiencies.",
+        features: [
+            "Scalable Custom Backend & Logic",
+            "Relational Database Architecture",
+            "Cloud Infrastructure (AWS/GCP)",
+            "Fully Automated Workflows Setup",
+            "Enterprise-Grade Data Security",
+            "Legacy Platform Modernization"
+        ]
     }
 ];
 
 const Services = () => {
+    const [selectedService, setSelectedService] = useState(null);
+
     useEffect(() => {
         const isMobile = window.innerWidth <= 768;
         if (!isMobile) {
@@ -80,7 +124,7 @@ const Services = () => {
 
                 <div className="services-grid">
                     {services.map((service, index) => (
-                        <div className="service-card" key={index}>
+                        <div className="service-card" key={index} onClick={() => setSelectedService(service)} style={{ cursor: 'pointer' }}>
                             <div className="icon-box">
                                 <i className={`fas ${service.icon}`}></i>
                             </div>
@@ -95,6 +139,34 @@ const Services = () => {
                     ))}
                 </div>
             </div>
+
+            {selectedService && (
+                <div className="service-modal-overlay" onClick={() => setSelectedService(null)}>
+                    <div className="service-modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="service-modal-close" onClick={() => setSelectedService(null)}>
+                            <i className="fas fa-times"></i>
+                        </button>
+                        <div className="modal-icon-box">
+                            <i className={`fas ${selectedService.icon}`}></i>
+                        </div>
+                        <h3>{selectedService.title}</h3>
+                        <p>{selectedService.desc}</p>
+                        <ul className="modal-features">
+                            {selectedService.features.map((feature, idx) => (
+                                <li key={idx}><i className="fas fa-check"></i> {feature}</li>
+                            ))}
+                        </ul>
+                        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                            <button className="btn-primary-soft" onClick={() => {
+                                const text = `Thank you for contacting Aadyaa Infotech. We truly appreciate your message. Our team will review your inquiry and get back to you shortly.\n\nInquiry about: ${selectedService.title}`;
+                                window.location.href = `https://wa.me/916355893624?text=${encodeURIComponent(text)}`;
+                            }}>
+                                Inquiry Now <i className="fab fa-whatsapp" style={{ marginLeft: '8px' }}></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

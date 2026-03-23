@@ -29,17 +29,20 @@ const Contact = () => {
             return;
         }
 
-        const whatsappMessage = `*New Inquiry from Website*%0A%0A` +
-            `*Name:* ${encodeURIComponent(name)}%0A` +
-            `*Email:* ${encodeURIComponent(email)}%0A` +
-            `*Phone:* ${encodeURIComponent(phone)}%0A` +
-            `*Service:* ${encodeURIComponent(service)}%0A` +
-            `*Message:* ${encodeURIComponent(message)}`;
+        // Construct the plain text message first
+        const text = `*New Inquiry from Website*\n\n` +
+            `*Name:* ${name}\n` +
+            `*Email:* ${email}\n` +
+            `*Phone:* ${phone}\n` +
+            `*Service:* ${service}\n` +
+            `*Message:* ${message}`;
 
-        const whatsappURL = `https://wa.me/916355893624?text=${whatsappMessage}`;
-        window.open(whatsappURL, '_blank');
+        // Encode the entire message properly for a URL
+        const whatsappURL = `https://wa.me/916355893624?text=${encodeURIComponent(text)}`;
 
-        alert('Redirecting to WhatsApp...');
+        // Direct redirect is often more reliable than window.open
+        window.location.href = whatsappURL;
+
         setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     };
 
@@ -52,7 +55,7 @@ const Contact = () => {
                 <div className="marquee-background">
                     <div className="marquee-inner">
                         {[...Array(10)].map((_, i) => (
-                            <span key={i}>SPECIAL OFFER • AADYAA INFOTECH • LIMITED PERIOD DEAL • </span>
+                            <span key={i}>SPECIAL OFFER • WEB + APP + SEO = 4999 • </span>
                         ))}
                     </div>
                 </div>
@@ -117,12 +120,12 @@ const Contact = () => {
                             <div className="form-group">
                                 <select id="service" required value={formData.service} onChange={handleChange}>
                                     <option value="">Select Service</option>
-                                    <option value="website">Website Development</option>
-                                    <option value="mobile">Mobile App Development</option>
-                                    <option value="seo">SEO Optimization</option>
-                                    <option value="social">Social Media Marketing</option>
-                                    <option value="graphic">Graphic Design</option>
-                                    <option value="digital">Digital Marketing</option>
+                                    <option value="Business Websites">Business Websites</option>
+                                    <option value="Ecommerce Development">Ecommerce Development</option>
+                                    <option value="Mobile App Development">Mobile App Development</option>
+                                    <option value="CMS Platforms">CMS Platforms</option>
+                                    <option value="High-Converting Pages">High-Converting Pages</option>
+                                    <option value="Custom Web Applications">Custom Web Applications</option>
                                 </select>
                             </div>
                             <div className="form-group">

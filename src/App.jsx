@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TopMarquee from './components/TopMarquee';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import Hero from './components/Hero';
 import ProjectsSlider from './components/ProjectsSlider';
+import DemoSites from './components/DemoSites';
 import Industries from './components/Industries';
 import Services from './components/Services';
 import Team from './components/Team';
@@ -97,11 +97,11 @@ function App() {
     <div className="app-container">
       <div id="cursorGlow" className="cursor-glow"></div>
       <TopMarquee />
-      <Header onMenuToggle={toggleSidebar} />
+      <Header onMenuToggle={toggleSidebar} isMenuOpen={isSidebarOpen} />
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       <main>
-        <Hero />
         <ProjectsSlider />
+        <DemoSites />
         <Industries />
         <Services />
         <Team />

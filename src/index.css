@@ -1336,7 +1336,7 @@ body.dark-mode .scroll-top {
 .sidebar-menu {
     position: fixed;
     top: 0;
-    right: -450px;
+    right: 0;
     width: 450px;
     max-width: 90vw;
     height: 100vh;
@@ -1348,18 +1348,20 @@ body.dark-mode .scroll-top {
         -5px 0 40px rgba(139, 92, 246, 0.2),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     z-index: 9999;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transform: translateX(100%) scale(0.9);
     opacity: 0;
+    transform: scale(0.9);
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .sidebar-menu.active {
-    right: 0;
-    transform: translateX(0) scale(1);
     opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    animation: modal-pop 0.3s ease-out forwards;
 }
 
 /* Animated Background Gradient */
@@ -2808,7 +2810,7 @@ body.dark-mode .scroll-top {
     .industries-grid {
         gap: 12px;
         padding: 0 16px 20px;
-        animation-duration: 100s;
+        animation-duration: 10s;
     }
 
     .industry-card {
@@ -3777,12 +3779,22 @@ body.dark-mode .scroll-top {
     font-size: 1.3rem;
     margin-bottom: 0.75rem;
     color: #1f2937;
+    transition: color 0.3s ease;
+}
+
+.service-card h3:hover {
+    color: #4f46e5;
 }
 
 .service-card p {
     color: #6b7280;
     margin-bottom: 1rem;
     font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.service-card p:hover {
+    color: #ec4899;
 }
 
 .service-features {
@@ -3796,6 +3808,12 @@ body.dark-mode .scroll-top {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.service-features li:hover {
+    color: #4f46e5;
+    transform: translateX(5px);
 }
 
 .service-features li i {
@@ -4031,9 +4049,9 @@ body.dark-mode .scroll-top {
 .marquee-background .marquee-inner {
     display: flex;
     white-space: nowrap;
-    animation: marquee-bg 30s linear infinite;
+    animation: marquee-bg 60s linear infinite;
     position: absolute;
-    top: 50%;
+    top: 25%;
     transform: translateY(-50%);
     width: max-content;
 }
@@ -5289,4 +5307,214 @@ body.dark-mode .scroll-top {
 .notification-error {
     background: #ef4444;
     color: white;
+}
+
+/* ==================== DEMO SITES & MODAL SECTION ==================== */
+.demo-sites-section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.demo-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.demo-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.demo-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.demo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.demo-card:hover .demo-img {
+    transform: scale(1.05);
+}
+
+.demo-content {
+    padding: 2rem;
+}
+
+.demo-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.demo-content p {
+    color: #cbd5e1;
+    margin-bottom: 1.5rem;
+}
+
+/* Modal CSS */
+.service-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.service-modal-content {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 3rem;
+    border-radius: 24px;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: modal-pop 0.3s ease-out forwards;
+}
+
+@keyframes modal-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.service-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service-modal-close:hover {
+    color: #ef4444;
+}
+
+.modal-icon-box {
+    font-size: 3rem;
+    color: #3b82f6;
+    margin-bottom: 1rem;
+}
+
+.service-modal-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.service-modal-content p {
+    color: #cbd5e1;
+    margin-bottom: 1.5rem;
+}
+
+.modal-features {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-features li {
+    padding: 0.5rem 0;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-features i {
+    color: #3b82f6;
+}
+
+/* Tech Stack Marquee in Industries */
+.tech-stack-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    padding: 2rem 0 0 0;
+    margin-bottom: 3rem;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tech-stack-marquee {
+    display: flex;
+    width: max-content;
+}
+
+.tech-stack-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding-right: 4rem;
+    animation: slide-tech 100s linear infinite;
+}
+
+.tech-stack-marquee:hover .tech-stack-track {
+    animation-play-state: paused;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tech-item i {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.tech-item:hover {
+    color: #6366f1;
+}
+
+.tech-item:hover i {
+    color: #6366f1;
+}
+
+@keyframes slide-tech {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }

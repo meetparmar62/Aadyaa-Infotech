@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Header = ({ onMenuToggle }) => {
+const Header = ({ onMenuToggle, isMenuOpen }) => {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Header = ({ onMenuToggle }) => {
                     </div>
 
                     <div className="header-actions">
-                        <button className="minimal-menu-btn" id="menuToggle" onClick={onMenuToggle}>
+                        <button className={`minimal-menu-btn ${isMenuOpen ? 'active' : ''}`} id="menuToggle" onClick={onMenuToggle}>
                             <span className="menu-line line-1"></span>
                             <span className="menu-line line-2"></span>
                             <span className="menu-line line-3"></span>
@@ -95,13 +95,16 @@ const Header = ({ onMenuToggle }) => {
                     </div>
 
                     <div className="story-actions">
-                        <a href="#contact" className="btn-primary-soft">
-                            <span>Start Your Project</span>
+                        <a href="#services" className="btn-primary-soft">
+                            <span>Our Services</span>
                             <i className="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#services" className="btn-outline-soft">
-                            <span>Explore Work</span>
-                        </a>
+                        <button className="btn-outline-soft" onClick={() => {
+                            const text = `Thank you for contacting Aadyaa Infotech. We truly appreciate your message. Our team will review your inquiry and get back to you shortly.`;
+                            window.location.href = `https://wa.me/916355893624?text=${encodeURIComponent(text)}`;
+                        }} style={{ cursor: 'pointer', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>
+                            <span>Inquiry</span>
+                        </button>
                     </div>
                 </div>
 
