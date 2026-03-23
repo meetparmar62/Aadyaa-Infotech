@@ -78,6 +78,19 @@ const services = [
             "Enterprise-Grade Data Security",
             "Legacy Platform Modernization"
         ]
+    },
+    {
+        title: "AI Automation",
+        icon: "fa-brain",
+        desc: "Transform your business operations with intelligent AI solutions that automate tasks, reduce costs, and boost productivity.",
+        features: [
+            "Custom AI Chatbot Development",
+            "Process Automation & Optimization",
+            "Machine Learning Model Integration",
+            "Natural Language Processing (NLP)",
+            "Intelligent Data Analysis",
+            "Workflow Automation Solutions"
+        ]
     }
 ];
 
