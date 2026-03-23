@@ -4051,7 +4051,7 @@ body.dark-mode .scroll-top {
     white-space: nowrap;
     animation: marquee-bg 60s linear infinite;
     position: absolute;
-    top: 25%;
+    top: 75%;
     transform: translateY(-50%);
     width: max-content;
 }
