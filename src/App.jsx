@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TopMarquee from './components/TopMarquee';
+import AdminPanel from './components/AdminPanel';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import ProjectsSlider from './components/ProjectsSlider';
@@ -10,6 +10,7 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './index.css';
+import './components/adminStyles.css';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -93,10 +94,28 @@ function App() {
     document.body.style.overflow = '';
   };
 
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  useEffect(() => {
+    // Check for admin panel shortcut (press 'A' key)
+    const handleKeyPress = (e) => {
+      if (e.key === 'a' && e.ctrlKey) {
+        e.preventDefault();
+        setShowAdmin(prev => !prev);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
+  if (showAdmin) {
+    return <AdminPanel />;
+  }
+
   return (
     <div className="app-container">
       <div id="cursorGlow" className="cursor-glow"></div>
-      <TopMarquee />
       <Header onMenuToggle={toggleSidebar} isMenuOpen={isSidebarOpen} />
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       <main>

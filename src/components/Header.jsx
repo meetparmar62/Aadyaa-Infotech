@@ -18,9 +18,6 @@ const Header = ({ onMenuToggle, isMenuOpen }) => {
     return (
         <header className="premium-header-light" id="premiumHeader">
             <div className="header-soft-bg"></div>
-            <div className="header-blur-blob blob-1"></div>
-            <div className="header-blur-blob blob-2"></div>
-            <div className="header-blur-blob blob-3"></div>
 
             <div className={`floating-header-card ${scrolled ? 'scrolled' : ''}`}>
                 <div className={`header-top-bar ${scrolled ? 'scrolled' : ''}`}>
@@ -34,6 +31,16 @@ const Header = ({ onMenuToggle, isMenuOpen }) => {
                     </div>
 
                     <div className="header-actions">
+                        <button 
+                            className="admin-access-btn"
+                            onClick={() => {
+                                const event = new KeyboardEvent('keydown', { key: 'a', ctrlKey: true });
+                                window.dispatchEvent(event);
+                            }}
+                            title="Admin Panel (Ctrl+A)"
+                        >
+                            <i className="fas fa-user-shield"></i>
+                        </button>
                         <button className={`minimal-menu-btn ${isMenuOpen ? 'active' : ''}`} id="menuToggle" onClick={onMenuToggle}>
                             <span className="menu-line line-1"></span>
                             <span className="menu-line line-2"></span>

@@ -29,6 +29,21 @@ const Contact = () => {
             return;
         }
 
+        // Save inquiry to localStorage (for admin panel)
+        const newInquiry = {
+            name: name,
+            contact: `${email} | ${phone}`,
+            service: service,
+            message: message,
+            date: new Date().toISOString(),
+            status: 'new'
+        };
+
+        // Get existing inquiries or initialize empty array
+        const existingInquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+        existingInquiries.push(newInquiry);
+        localStorage.setItem('inquiries', JSON.stringify(existingInquiries));
+
         // Construct the plain text message first
         const text = `*New Inquiry from Website*\n\n` +
             `*Name:* ${name}\n` +
@@ -120,12 +135,13 @@ const Contact = () => {
                             <div className="form-group">
                                 <select id="service" required value={formData.service} onChange={handleChange}>
                                     <option value="">Select Service</option>
-                                    <option value="Business Websites">Business Websites</option>
-                                    <option value="Ecommerce Development">Ecommerce Development</option>
-                                    <option value="Mobile App Development">Mobile App Development</option>
-                                    <option value="CMS Platforms">CMS Platforms</option>
-                                    <option value="High-Converting Pages">High-Converting Pages</option>
-                                    <option value="Custom Web Applications">Custom Web Applications</option>
+                                    <option value="Website Development">Website Development</option>
+                                    <option value="App Development">App Development</option>
+                                    <option value="SEO (Search Engine Optimization)">SEO (Search Engine Optimization)</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                    <option value="Social Media Management">Social Media Management</option>
+                                    <option value="Branding & Design">Branding & Design</option>
+                                    <option value="AI Automation">AI Automation</option>
                                 </select>
                             </div>
                             <div className="form-group">

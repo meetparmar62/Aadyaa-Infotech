@@ -1,103 +1,137 @@
 import React, { useEffect, useState } from 'react';
 
-const services = [
+const defaultServices = [
     {
-        title: "Business Websites",
+        title: "Website Development",
         icon: "fa-laptop-code",
-        desc: "Your website is open 24/7 selling your services while you sleep. We build fast, SEO-ready sites that turn visitors into paying customers.",
+        desc: "Professional websites that work 24/7 to sell your services while you sleep. Fast, SEO-ready sites that convert visitors into customers.",
         features: [
-            "Custom UI/UX Premium Design",
+            "Business Website (Static & Dynamic)",
+            "E-commerce Website",
+            "Custom Web Solutions",
             "Mobile-First Responsiveness",
             "Technical SEO Architecture",
-            "Lightning Fast Page Loading",
-            "SSL & Advanced Security Setup",
-            "CMS Integration for Easy Updates"
+            "Lightning Fast Page Loading"
         ]
     },
     {
-        title: "Ecommerce Development",
-        icon: "fa-shopping-cart",
-        desc: "Launch your online store with a checkout experience that maximises order value and reduces cart abandonment.",
-        features: [
-            "Tailored Shopping Cart Experience",
-            "Multi-Payment Gateway Integrations",
-            "Advanced Inventory Management",
-            "Real-time Order Tracking Dashboard",
-            "Abandoned Cart Recovery Funnels",
-            "High-Converting Checkout Process"
-        ]
-    },
-    {
-        title: "Mobile App Development",
+        title: "App Development",
         icon: "fa-mobile-alt",
-        desc: "Put your business in your customers' pocket. We build native iOS and Android apps or cross-platform solutions that engage users.",
+        desc: "Put your business in your customers' pocket. Native iOS and Android apps or cross-platform solutions that engage users.",
         features: [
-            "Native iOS App Development",
-            "Native Android App Development",
-            "Cross-Platform React/Flutter Apps",
-            "Interactive Push Notifications",
-            "Smooth Offline Mode Capabilities",
-            "Full App Store Publishing Support"
+            "Android & iOS Apps",
+            "Service / Booking Apps",
+            "Custom Business Apps",
+            "Native App Development",
+            "Cross-Platform Solutions",
+            "App Store Publishing Support"
         ]
     },
     {
-        title: "CMS Platforms",
-        icon: "fa-edit",
-        desc: "Take control of your content without needing a developer. We build WordPress, Sanity, or headless CMS solutions.",
+        title: "SEO (Search Engine Optimization)",
+        icon: "fa-search",
+        desc: "Improve your Google ranking and get found by more customers. Comprehensive SEO strategies that drive organic traffic.",
         features: [
-            "Modern Headless CMS Architecture",
-            "Custom WordPress & Sanity Builds",
-            "Intuitive Drag-and-Drop Builders",
-            "Custom Data Types & Taxonomies",
-            "Role-Based Team Access Control",
-            "Seamless Third-Party API Sync"
+            "Google Ranking Improvement",
+            "Keyword Optimization",
+            "On-page & Off-page SEO",
+            "Technical SEO Audit",
+            "Content Optimization",
+            "Link Building Strategies"
         ]
     },
     {
-        title: "High-Converting Pages",
-        icon: "fa-rocket",
-        desc: "Every paid ad click costs you money. We design landing pages engineered for maximum conversion so your campaigns actually profit.",
+        title: "Digital Marketing",
+        icon: "fa-bullhorn",
+        desc: "Reach more customers with data-driven marketing campaigns. Measurable results across all digital channels.",
         features: [
-            "A/B Split Testing Configurations",
-            "Conversion Rate Optimization (CRO)",
-            "Strategic Call-to-Action Placements",
-            "User Heatmaps & Analytics Tracking",
-            "Frictionless Lead Generation Forms",
-            "Persuasive Sales Copywriting structure"
+            "Google Ads",
+            "Meta Ads (Facebook & Instagram)",
+            "Lead Generation Campaigns",
+            "PPC Management",
+            "Retargeting Campaigns",
+            "Performance Tracking & Analytics"
         ]
     },
     {
-        title: "Custom Web Applications",
-        icon: "fa-cogs",
-        desc: "Replace manual processes with smart web applications that automate workflows, manage data, and create scalable efficiencies.",
+        title: "Social Media Management",
+        icon: "fa-hashtag",
+        desc: "Grow your online presence with engaging content and strategic management across all social platforms.",
         features: [
-            "Scalable Custom Backend & Logic",
-            "Relational Database Architecture",
-            "Cloud Infrastructure (AWS/GCP)",
-            "Fully Automated Workflows Setup",
-            "Enterprise-Grade Data Security",
-            "Legacy Platform Modernization"
+            "Instagram Growth",
+            "Content Creation (Posts, Reels)",
+            "Page Handling & Strategy",
+            "Community Management",
+            "Influencer Collaboration",
+            "Social Media Analytics"
+        ]
+    },
+    {
+        title: "Branding & Design",
+        icon: "fa-paint-brush",
+        desc: "Create a stunning brand identity that captivates your audience and stands out from the competition.",
+        features: [
+            "Logo Design",
+            "Posters & Creatives",
+            "UI/UX Design",
+            "Brand Identity Development",
+            "Visual Style Guides",
+            "Marketing Material Design"
         ]
     },
     {
         title: "AI Automation",
-        icon: "fa-brain",
-        desc: "Transform your business operations with intelligent AI solutions that automate tasks, reduce costs, and boost productivity.",
+        icon: "fa-robot",
+        desc: "Transform your business with intelligent AI solutions that automate tasks, reduce costs, and boost productivity 24/7.",
         features: [
-            "Custom AI Chatbot Development",
-            "Process Automation & Optimization",
-            "Machine Learning Model Integration",
-            "Natural Language Processing (NLP)",
-            "Intelligent Data Analysis",
-            "Workflow Automation Solutions"
+            "AI Chatbots (Website + WhatsApp Auto Reply)",
+            "Lead Automation System (Auto Capture & Follow-up)",
+            "Email & WhatsApp Marketing Automation",
+            "CRM Automation (Customer Data Management)",
+            "AI-based Customer Support (24/7 Response)",
+            "Sales Funnel Automation",
+            "AI Content Generation (Posts, Ads, Scripts)",
+            "Workflow Automation (Business Process Auto)"
         ]
     }
 ];
 
 const Services = () => {
+    const [services, setServices] = useState([]);
     const [selectedService, setSelectedService] = useState(null);
 
     useEffect(() => {
+        // Load services from localStorage (synced with admin panel)
+        const storedServices = localStorage.getItem('services');
+        
+        // Check if stored services match our current default services structure
+        let shouldUpdate = false;
+        if (!storedServices) {
+            shouldUpdate = true;
+        } else {
+            try {
+                const parsed = JSON.parse(storedServices);
+                // If number of services doesn't match or titles don't match, update
+                if (parsed.length !== defaultServices.length) {
+                    shouldUpdate = true;
+                } else {
+                    const titlesMatch = parsed.every((s, i) => s.title === defaultServices[i].title);
+                    if (!titlesMatch) {
+                        shouldUpdate = true;
+                    }
+                }
+            } catch (e) {
+                shouldUpdate = true;
+            }
+        }
+        
+        if (shouldUpdate || !storedServices) {
+            setServices(defaultServices);
+            localStorage.setItem('services', JSON.stringify(defaultServices));
+        } else {
+            setServices(JSON.parse(storedServices));
+        }
+
         const isMobile = window.innerWidth <= 768;
         if (!isMobile) {
             const cards = document.querySelectorAll('.service-card');
