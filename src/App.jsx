@@ -105,8 +105,23 @@ function App() {
       }
     };
     
+    // Check URL hash for admin panel
+    const checkHash = () => {
+      if (window.location.hash === '#/admin') {
+        setShowAdmin(true);
+      } else {
+        setShowAdmin(false);
+      }
+    };
+
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('hashchange', checkHash);
+    checkHash(); // Check on initial load
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('hashchange', checkHash);
+    };
   }, []);
 
   if (showAdmin) {
