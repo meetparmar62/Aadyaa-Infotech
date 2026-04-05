@@ -5,6 +5,11 @@ const WebsiteDevelopment = () => {
   return (
     <>
       <Helmet>
+        {/* Favicon Links */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+        
         <title>Website Development Company in Ahmedabad | Custom Web Design Services - Aadyaa Infotech</title>
         <meta name="description" content="Professional website development company in Ahmedabad offering custom web design, e-commerce websites, responsive web development & SEO-friendly sites. Get free consultation!" />
         <meta name="keywords" content="website development Ahmedabad, web design Ahmedabad, custom website development, e-commerce website Ahmedabad, responsive web design, WordPress development Ahmedabad, business website developer, professional web development Gujarat" />

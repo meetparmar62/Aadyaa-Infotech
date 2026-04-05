@@ -5,6 +5,11 @@ const ApplicationDevelopment = () => {
   return (
     <>
       <Helmet>
+        {/* Favicon Links */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+        
         <title>Application Development Company in Ahmedabad | Mobile App Developers - Aadyaa Infotech</title>
         <meta name="description" content="Professional application development company in Ahmedabad offering Android app development, iOS app development, cross-platform apps & custom mobile solutions. Get free quote!" />
         <meta name="keywords" content="application development Ahmedabad, mobile app development Ahmedabad, Android app developer Ahmedabad, iOS app developer Ahmedabad, cross-platform app development, React Native developers Gujarat, custom mobile apps, app development company" />

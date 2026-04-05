@@ -4,6 +4,16 @@ import { Helmet } from 'react-helmet-async';
 const SEO = () => {
   return (
     <Helmet>
+      {/* Favicon Links */}
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+      <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      
       <title>Aadyaa Infotech - Best Website Development & Application Development Company in Ahmedabad | Digital Marketing & AI Solutions</title>
       <meta name="title" content="Aadyaa Infotech - Best Website Development & Application Development Company in Ahmedabad | Digital Marketing & AI Solutions" />
       <meta name="description" content="Leading website development & application development company in Ahmedabad offering professional web design, mobile apps, e-commerce sites, SEO services & digital marketing. Serving all areas in Ahmedabad including SG Highway, Satellite, Vastrapur, Bodakdev, Prahlad Nagar. 100+ projects completed. Free consultation! Call now." />
